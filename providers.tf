@@ -13,10 +13,16 @@ terraform {
     region = "ru-central1"
     key    = "terraform.tfstate"
 
+    # access_key                  = ""          #Только для примера! Не хардкодим секретные данные!
+    # secret_key                  = ""          #Только для примера! Не хардкодим секретные данные!
+
     skip_region_validation      = true
     skip_credentials_validation = true
     skip_requesting_account_id  = true # необходимая опция при описании бэкенда для Terraform версии 1.6.1 и старше.
     skip_s3_checksum            = true # необходимая опция при описании бэкенда для Terraform версии 1.6.3 и старше.
+
+    dynamodb_endpoint = "https://docapi.serverless.yandexcloud.net/ru-central1/b1g2678hn0b6tk45jj76/etnls7cdhhhv5fsu3ln6"
+    dynamodb_table              = "tfstate-lock"
 
   }
 
