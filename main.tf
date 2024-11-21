@@ -25,7 +25,8 @@ module "vpc_dev" {
 }
 
 module "test-vm" {
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+#  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=0049a0c47c805c2552e16f7bca2581a7feae0f14"
   env_name       = var.vm_name 
   network_id     = module.vpc_dev.yandex_vpc_net_info.id
   subnet_zones   = [for key, subnet in module.vpc_dev.yandex_vpc_subnet_info : subnet.zone]
@@ -47,7 +48,8 @@ module "test-vm" {
 }
 
 module "test-vm2" {
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=0049a0c47c805c2552e16f7bca2581a7feae0f14"
+#  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
   env_name       = var.vm_name 
   network_id     = module.vpc_dev.yandex_vpc_net_info.id
   subnet_zones   = [for key, subnet in module.vpc_dev.yandex_vpc_subnet_info : subnet.zone]
