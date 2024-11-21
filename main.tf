@@ -83,7 +83,7 @@ data "template_file" "cloudinit" {
 
 
 
-#задача 4
+#задача 5-4
 #валидация через cidrhost
 variable "ip_address" {
   type        = string
@@ -121,7 +121,7 @@ variable "ip_addresses" {
   }
 }
 
-
+#задача 5-5
 variable "low_case" {
   type        = string
   description = "строка только в нижнем регистре"
