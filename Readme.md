@@ -72,7 +72,7 @@ git push -u origin main**
 **terraform init —backend-config=”access\_key=” —backend-config=”secret\_key=”**
 Error: Backend configuration changed - это нормально. ведь стейт изменился. инициализируем с ключем -migrate-state
 **terraform init —backend-config=”access\_key=” —backend-config=”secret\_key=”” -migrate-state**
-## <a name="<img src="></a>**" class="reference-link">![скриншот]**
+![скриншот](./images/state_to_s3_bucket.png)
 *Закоммитьте в ветку ‘terraform-05’ все изменения.*
 **git add .
 git commit -m “added backend block to providers - terraform-05”**
@@ -194,8 +194,8 @@ cidrhost(“1920.1680.0.1/32”, 0)**
 **can(regex(“^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d).?\b){4}$”, var.ip\_address))**
 
 проверка :
-![скриншот]
-![скриншот]
+![скриншот](./validate1.png)
+![скриншот](./validate2.png)
 
 -----
 *type=list(string), description=”список ip-адресов” — проверка, что все адреса верны. Тесты: [“192.168.0.1”, “1.1.1.1”, “127.0.0.1”] и [“192.168.0.1”, “1.1.1.1”, “1270.0.0.1”].\**
