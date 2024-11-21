@@ -1,0 +1,82 @@
+TFLINT
+
+11 issue(s) found:
+
+Warning: Module source "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main" uses a default branch as ref (main) (terraform_module_pinned_source)
+
+  on main.tf line 35:
+  35:   source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+
+Reference: https://github.com/terraform-linters/tflint-ruleset-terraform/blob/v0.10.0/docs/rules/terraform_module_pinned_source.md
+
+Warning: Module source "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main" uses a default branch as ref (main) (terraform_module_pinned_source)
+
+  on main.tf line 57:
+  57:   source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+
+Reference: https://github.com/terraform-linters/tflint-ruleset-terraform/blob/v0.10.0/docs/rules/terraform_module_pinned_source.md
+
+Warning: Missing version constraint for provider "template" in `required_providers` (terraform_required_providers)
+
+  on main.tf line 80:
+  80: data "template_file" "cloudinit" {
+
+Reference: https://github.com/terraform-linters/tflint-ruleset-terraform/blob/v0.10.0/docs/rules/terraform_required_providers.md
+
+Warning: Missing version constraint for provider "yandex" in `required_providers` (terraform_required_providers)
+
+  on providers.tf line 3:
+   3:     yandex = {
+   4:       source = "yandex-cloud/yandex"
+   5:     }
+
+Reference: https://github.com/terraform-linters/tflint-ruleset-terraform/blob/v0.10.0/docs/rules/terraform_required_providers.md
+
+Warning: [Fixable] variable "default_cidr" is declared but not used (terraform_unused_declarations)
+
+  on variables.tf line 18:
+  18: variable "default_cidr" {
+
+Reference: https://github.com/terraform-linters/tflint-ruleset-terraform/blob/v0.10.0/docs/rules/terraform_unused_declarations.md
+
+Warning: [Fixable] variable "vpc_name" is declared but not used (terraform_unused_declarations)
+
+  on variables.tf line 24:
+  24: variable "vpc_name" {
+
+Reference: https://github.com/terraform-linters/tflint-ruleset-terraform/blob/v0.10.0/docs/rules/terraform_unused_declarations.md
+
+Warning: [Fixable] variable "vpc_prod" is declared but not used (terraform_unused_declarations)
+
+  on variables.tf line 52:
+  52: variable "vpc_prod" {
+
+Reference: https://github.com/terraform-linters/tflint-ruleset-terraform/blob/v0.10.0/docs/rules/terraform_unused_declarations.md
+
+Warning: [Fixable] variable "cluster_name" is declared but not used (terraform_unused_declarations)
+
+  on variables.tf line 78:
+  78: variable "cluster_name" {
+
+Reference: https://github.com/terraform-linters/tflint-ruleset-terraform/blob/v0.10.0/docs/rules/terraform_unused_declarations.md
+
+Warning: [Fixable] variable "mysql_db_name" is declared but not used (terraform_unused_declarations)
+
+  on variables.tf line 84:
+  84: variable "mysql_db_name" {
+
+Reference: https://github.com/terraform-linters/tflint-ruleset-terraform/blob/v0.10.0/docs/rules/terraform_unused_declarations.md
+
+Warning: [Fixable] variable "mysql_db_user" is declared but not used (terraform_unused_declarations)
+
+  on variables.tf line 90:
+  90: variable "mysql_db_user" {
+
+Reference: https://github.com/terraform-linters/tflint-ruleset-terraform/blob/v0.10.0/docs/rules/terraform_unused_declarations.md
+
+Warning: [Fixable] variable "s3_name" is declared but not used (terraform_unused_declarations)
+
+  on variables.tf line 98:
+  98: variable "s3_name" {
+
+Reference: https://github.com/terraform-linters/tflint-ruleset-terraform/blob/v0.10.0/docs/rules/terraform_unused_declarations.md

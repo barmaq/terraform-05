@@ -2,6 +2,12 @@ terraform {
   required_providers {
     yandex = {
       source = "yandex-cloud/yandex"
+      version = "~>0.132.0"
+    }
+#fix for template - tflint 
+    template = {
+      source  = "hashicorp/template"
+      version = "~> 2"
     }
   }
   required_version = "~>1.8.4"
@@ -37,3 +43,4 @@ provider "yandex" {
   zone      = var.default_zone
   service_account_key_file = file("~/.ssh/authorized_key.json")
 }
+

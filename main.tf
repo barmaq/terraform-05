@@ -25,7 +25,8 @@ module "vpc_dev" {
 }
 
 module "test-vm" {
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+#  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=0049a0c47c805c2552e16f7bca2581a7feae0f14"
   env_name       = var.vm_name 
   network_id     = module.vpc_dev.yandex_vpc_net_info.id
   subnet_zones   = [for key, subnet in module.vpc_dev.yandex_vpc_subnet_info : subnet.zone]
@@ -47,7 +48,8 @@ module "test-vm" {
 }
 
 module "test-vm2" {
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=0049a0c47c805c2552e16f7bca2581a7feae0f14"
+#  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
   env_name       = var.vm_name 
   network_id     = module.vpc_dev.yandex_vpc_net_info.id
   subnet_zones   = [for key, subnet in module.vpc_dev.yandex_vpc_subnet_info : subnet.zone]
@@ -77,4 +79,75 @@ data "template_file" "cloudinit" {
     ssh_public_key     = file("~/.ssh/ycbarmaq.pub")
   }
 
+}
+
+
+
+#задача 4
+#валидация через cidrhost
+variable "ip_address" {
+  type        = string
+  description = "ip-адрес"
+#  default     = "1920.1680.0.1"
+  default     = "192.168.0.1"
+
+  validation {
+    condition     = can(cidrhost(join("/", [var.ip_address, "32"]), 0))
+    error_message = "ip-адрес должен быть в формате x.x.x.x, где x - это число от 0 до 255."
+  }
+}
+
+#вариант с regex  
+# variable "ip_address" {
+#   type        = string
+#   description = "ip-адрес"
+#   default     = "192.168.0.1"
+
+#   validation {
+#     condition     = can(regex("^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$", var.ip_address))
+#     error_message = "ip-адрес должен быть в формате x.x.x.x, где x - это число от 0 до 255."
+#   }
+# }
+
+variable "ip_addresses" {
+  type        = list(string)
+  description = "список ip-адресов"
+#  default     = ["192.168.0.1", "1.1.1.1", "1270.0.0.1"]
+  default     = ["192.168.0.1", "1.1.1.1", "127.0.0.1"]
+
+  validation {
+    condition     = alltrue([for ip in var.ip_addresses : can(regex("^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$", ip))])
+    error_message = "все ip-адреса в списке должны быть в формате x.x.x.x. где x - это число от 0 до 255"
+  }
+}
+
+
+variable "low_case" {
+  type        = string
+  description = "строка только в нижнем регистре"
+  default     = "hello world 13!, привет мир"
+
+  validation {
+    condition     = can(regex("^[^A-ZА-ЯЁ]*$", var.low_case))
+    error_message = "в строке недопустимы заглавные  буквы"
+  }
+}
+
+
+variable "in_the_end_there_can_be_only_one" {
+  description = "Who is better Connor or Duncan?"
+  type = object({
+    Dunkan = optional(bool)
+    Connor = optional(bool)
+  })
+
+  default = {
+    Dunkan = true
+    Connor = false
+  }
+
+  validation {
+    condition     = (var.in_the_end_there_can_be_only_one.Dunkan != var.in_the_end_there_can_be_only_one.Connor)
+    error_message = "There can be only one MacLeod. Either Dunkan or Connor must be true, but not both."
+  }
 }
