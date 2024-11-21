@@ -110,7 +110,7 @@ Error: Backend configuration changed  - это нормально. ведь с�
 
 \*\*terraform init --backend-config="access\_key=" --backend-config="secret\_key="" -migrate-state\*\*
 
-![скриншот](/images/state\_to\_s3\_bucket.png)
+![скриншот](./images/state\_to\_s3\_bucket.png)
 
 \----------------------
 
@@ -292,9 +292,9 @@ cidrhost("1920.1680.0.1/32", 0)\*\*
 
 проверка :
 
-![скриншот](/images/validate1.png)
+![скриншот](./images/validate1.png)
 
-![скриншот](/images/validate2.png)
+![скриншот](./images/validate2.png)
 
 \--------------
 
